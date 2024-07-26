@@ -1,0 +1,60 @@
+﻿@model Area
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row pt-3 pb-3">
+        <div class="col">
+            <h2 class="d-flex">Lista de Areas</h2>
+        </div>
+        <div class="col d-grid gap-2 d-lg-flex justify-content-md-end">
+            <a class="btn btn-outline-primary" asp-action="Create">
+                <i class="bi bi-file-plus"> Agregar Nueva Area</i>
+            </a>
+        </div>
+    </div>
+    <div>
+        <form>
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-center" scope="col">Id</th>
+                        <th class="text-center" scope="col">Nombre</th>
+                        <th class="text-center" scope="col">Descripcion</th>
+                        <th class="text-center" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        @if (ViewBag.Areas != null)
+                        {
+                            foreach (var area in ViewBag.Areas)
+                            {
+                                <tr>
+                                    <td class="text-center">@area.Id</td>
+                                    <td class="text-center">@area.Name</td>
+                                    <td class="text-center">@area.Description</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@area.Id">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                        <button class="btn btn-outline-danger delete-button" data-id="@area.Id">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@section Scripts {
+    <script src="~/js/area.js"></script>
+}
+

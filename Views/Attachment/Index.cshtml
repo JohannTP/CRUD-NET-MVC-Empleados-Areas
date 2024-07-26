@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Attachment
+
+<div>
+    <div class="mb-3">
+        <a class="btn btn-outline-primary" asp-action="Edit" asp-controller="Person" asp-route-id="@ViewBag.PersonId">
+            <i class="bi bi-arrow-return-left"></i> Ir al empleado
+        </a>
+    </div>
+    <div class="mb-2">
+        <h4>Adjuntar Documentos</h4>
+    </div>
+    <div class="mb-5">
+        <table id="tblRegistros" class="table" style="border-collapse: collapse; width: 100%;">
+            <thead style="display: none;">
+                <tr>
+                    <th class="text-center" scope="col"></th>
+                    <th class="text-center" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody> 
+                @foreach (var documento in ViewBag.Documentos)
+                {
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td class="text-center" style="padding: 10px;">
+                            @documento.Nombre
+                        </td>
+                        <td class="text-center" style="padding: 10px;">
+                            <a href="data:@documento.Extension;base64,@Convert.ToBase64String(documento.Archivo)" download="@documento.Nombre" class="btn btn-primary btn-sm">
+                                <i class="bi bi-file-earmark-arrow-down-fill"></i>
+                            </a>
+                            <button class="btn btn-danger btn-sm delete-button" data-id="@documento.Id">
+                                <i class="bi bi-trash3"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pt5">
+        <form asp-controller="Attachment" asp-action="UploadFile" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="personId" value="@ViewBag.PersonId" />
+            <div class="form-group mb-3">
+                @* <label asp-for="Archivo" class="control-label">Selecciona un archivo</label> *@
+                <input type="file" name="file" class="form-control" required />
+                <span asp-validation-for="Archivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @* <input type="submit" value="Subir Documento" class="btn btn-primary" /> *@
+                <button type="submit" class="btn btn-outline-dark"><i class="bi bi-file-earmark-arrow-up-fill"></i> Subir Documento</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+    <script src="~/js/document.js"></script>
+}
+

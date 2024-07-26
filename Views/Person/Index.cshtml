@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Person
+
+<div class="container">
+    <div class="row pb-2 pt-3">
+        <div class="col">
+            <h2 class="d-flex">Lista de empleados</h2>
+        </div>
+        <div class="col d-grid gap-2 d-lg-flex justify-content-end">
+            <a class="btn btn-outline-primary" asp-action="Create">
+                <i class="bi bi-file-plus"> Agregar Nuevo Empleado</i>
+            </a>
+        </div>
+    </div>
+    <div>
+        <form>
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-center" scope="col">Codigo</th>
+                        <th class="text-center" scope="col">DNI</th>
+                        <th class="text-center" scope="col">Nombre y Apellidos</th>
+                        <th class="text-center" scope="col">Area</th>
+                        <th class="text-center" scope="col">Edad</th>
+                        <th class="text-center" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        @if(ViewBag.Persons != null)
+                        {
+                            foreach(var person in ViewBag.Persons)
+                            {
+                                <tr>
+                                    <td class="text-center">@person.Code</td>
+                                    <td class="text-center">@person.Dni</td>
+                                    <td class="text-center">@person.Name @person.LastName</td>
+                                    <td class="text-center">@person.Area</td>
+                                    <td class="text-center">@person.Age</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@person.Id">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                        <button class="btn btn-outline-danger delete-button" data-id="@person.Id">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@section scripts{
+    <script src="~/js/person.js"></script>
+}
+
+                                       

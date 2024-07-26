@@ -1,0 +1,109 @@
+﻿@model EmployeeNavigatorV3.Models.Person
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-primary" asp-action="Index">
+                <i class="bi bi-arrow-return-left"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-12 pt-2 pb-2">
+        <h2>Actualizar Empleado</h2>
+    </div>
+    <div class="col-12 my-2">
+        <form asp-action="Edit" method="post">
+            <div class="row mb-2">
+                <label for="inputCode" class="col-sm-4 col-form-label col-form-label-sm">Codigo:</label>
+                <div class="col-sm-8">
+                    <input asp-for="Code" class="form-control form-control-sm" id="inputCode" placeholder="Ingrese el codigo del empleado"/>
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="inputDni" class="col-sm-4 col-form-label col-form-label-sm">Dni:</label>  
+                <div class="col-sm-8">
+                    <input asp-for="Dni" class="form-control form-control-sm" id="inputDni" placeholder="Ingrese el Dni del empleado"/>
+                    <span asp-validation-for="Dni" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="inputName" class="col-sm-1 col col-form-label-sm">Nombre:</label>
+                <div class="col-sm-3">
+                    <input asp-for="Name" class="form-control form-control-sm" id="inputName" placeholder="Ingre el nombre del empleado"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <label for="inputLastName" class="col-sm-1 col-form-label col-form-label-sm">Apellido</label>
+                <div class="col-sm-3">
+                    <input asp-for="LastName" class="form-control form-control-sm" id="inputLastName" placeholder="Ingrese el apellido del empleado"/>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <label for="inputEmail" class="col-sm-1 col-form-label col-form-label-sm">Email:</label>
+                <div class="col-sm-3">
+                    <input asp-for="Email" class="form-control form-control-sm" id="inputEmail" placeholder="Ingrese el email del empleado"/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="inputDateOfBirth" class="col-sm-2 col-form-label col-form-label-sm">Fecha de Nacimiento:</label>
+                <div class="col-sm-4">
+                    <input asp-for="DateOfBirth" class="form-control form-control-sm" id="inputDateOfBirth" placeholder="Ingrese la fecha de nacimiento del emplead"/>
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <label for="inputAge" class="col-sm-2 col-form-label col-form-label-sm">Edad:</label>
+                <div class="col-sm-4">
+                    <input asp-for="Age" class="form-control form-control-sm" id="inputAge" placeholder="Ingrese la edad del empleado"/>
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="inputArea" class="col-sm-1 col-form-control col-form-label-sm">Area:</label>
+                <div class="col-sm-2">
+                    <select asp-for="Area" class="form-select form-control-sm" id="inputArea" asp-items="ViewBag.Areas">
+                        <option value="">--Seleccione--</option>
+                    </select>
+                    <span asp-validation-for="Area" class="text-danger"></span>
+                </div>
+                <label for="inputProfession" class="col-sm-1 col-form-label col-form-label-sm">Profesion:</label>
+                <div class="col-sm-2">
+                    <select asp-for="Profession" class="form-select form-control-sm" id="inputProfession" asp-items="ViewBag.Professions">
+                        <option value="">--Seleccione--</option>
+                    </select>
+                    <span asp-validation-for="Profession" class="text-danger"></span>
+                </div>
+                <label for="inputUni" class="col-sm-1 col-form-label col-form-label-sm">Universidad:</label>
+                <div class="col-sm-2">
+                    <select asp-for="Uni" class="form-select form-control-sm" id="inputUni" asp-items="ViewBag.Universities">
+                        <option value="">--Selecciones--</option>
+                    </select>
+                    <span asp-validation-for="Uni" class="text-danger"></span>
+                </div>
+                <label for="inputPosition" class="col-sm-1 col-form-label col-form-label-sm">Cargo:</label>
+                <div class="col-sm-2">
+                    <select asp-for="Position" class="form-select form-control-sm" id="inputPosition" asp-items="ViewBag.Positions">
+                        <option value="">--Selecciones--</option>
+                    </select>
+                    <span asp-validation-for="Position" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row pt-3">
+                <label class="col-sm-3 col-form-label col-form-label-sm">Documentos Adjuntos: </label>
+                <div class="col-sm-8">
+                    <a class="btn btn-primary" asp-action="Index" asp-controller="Attachment" asp-route-id="@ViewBag.PersonId">
+                        <i class="bi bi-eye-fill"></i>
+                    </a>         
+                </div>
+            </div>
+            <div class="d-grid pt-5">
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
